@@ -147,6 +147,63 @@
     color: #0FDC78;
     font-weight: 600;
   }
+  .example-table {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .ex-row {
+    display: grid;
+    grid-template-columns: 72px 1fr 1fr;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px dashed #E4E6EB;
+    align-items: center;
+  }
+  .ex-row:last-child {
+    border-bottom: none;
+  }
+  .ex-row.ex-head {
+    font-size: 12px;
+    font-weight: 600;
+    color: #8F959E;
+    border-bottom: 1px solid #E4E6EB;
+  }
+  .ex-stage {
+    font-weight: 600;
+    color: #0C5B32;
+  }
+  .ex-metric {
+    color: #4E535B;
+  }
+  .example-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .step-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    line-height: 1.7;
+  }
+  .step-num {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #0FDC78;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: 1px;
+  }
+  .step-row b {
+    color: #1F2329;
+  }
   .divider-line {
     border: none;
     border-top: 2px dashed #D9DCE1;
@@ -164,7 +221,6 @@
 <div class="page">
 
   <h1>用户增长知识框架总览</h1>
-  <p class="subtitle">1 套底层认知 + 2 个核心模型 + 1 套增长方法论 —— 所有增长策略从这里出发</p>
 
   <!-- 分支一：底层认知 -->
   <div class="branch">
@@ -216,6 +272,33 @@
           <span class="tag">线性漏斗 · 用户视角</span>
         </div>
         <p class="module-desc">五个环节：获客 · 激活 · 留存 · 传播 · 收入。每个环节延伸出关键指标与策略集合，由北极星指标拆解制定，最终指向北极星指标。</p>
+        <div class="sub-list single">
+          <div class="sub-card">
+            <div class="sub-name">示例：拼多多 AARRR 拆解</div>
+            <div class="sub-text example-table">
+              <div class="ex-row ex-head">
+                <span class="ex-stage">环节</span>
+                <span class="ex-strategy">拼多多策略</span>
+                <span class="ex-metric">关键指标</span>
+              </div>
+              <div class="ex-row">
+                <span class="ex-stage">获客</span>
+                <span class="ex-strategy">砍一刀 · 拼团</span>
+                <span class="ex-metric">新注册数 · CAC</span>
+              </div>
+              <div class="ex-row">
+                <span class="ex-stage">激活</span>
+                <span class="ex-strategy">一分钱秒杀 · 新人一元购</span>
+                <span class="ex-metric">注册→首单率</span>
+              </div>
+              <div class="ex-row">
+                <span class="ex-stage">留存</span>
+                <span class="ex-strategy">多多果园 · 签到红包 · 百亿补贴</span>
+                <span class="ex-metric">7天留存 · 30天留存 · 打开频次</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="module">
@@ -223,16 +306,20 @@
           <span class="module-name">增长飞轮</span>
           <span class="tag">正反馈循环 · 业务视角</span>
         </div>
-        <div class="sub-list">
+        <div class="sub-list single">
           <div class="sub-card">
-            <div class="sub-name"><span class="num">1</span>业务飞轮</div>
+            <div class="sub-name">业务飞轮</div>
             <div class="sub-text">整个业务的核心底层逻辑。例：低价吸引用户 → 用户增多 → 商家竞争 → 广告收入 → 加大补贴 → 价格更低。</div>
           </div>
-          <div class="sub-card">
-            <div class="sub-name"><span class="num">2</span>用户增长飞轮</div>
-            <div class="sub-text">以留存为核心的自增长循环：老用户带来新用户，每转一圈输出变成下一轮输入。</div>
-          </div>
         </div>
+      </div>
+
+      <div class="module">
+        <div class="module-head">
+          <span class="module-name">用户增长飞轮</span>
+          <span class="tag">自增长循环</span>
+        </div>
+        <p class="module-desc">以留存为核心的自增长循环：老用户带来新用户，每转一圈输出变成下一轮输入。</p>
       </div>
 
     </div>
@@ -261,7 +348,16 @@
             <div class="sub-name">设计逻辑（四步）</div>
             <div class="sub-text">
               <span class="flow-inline">① 北极星指标 <span class="arrow">→</span> ② 找瓶颈 <span class="arrow">→</span> ③ 提出假设 <span class="arrow">→</span> ④ 实验与指标验证</span><br>
-              假设必须可证伪；一次只改一个变量；ICE 排序决定优先级（Impact · Confidence · Ease）。
+              假设必须可证伪；一次只改一个变量；ICE 排序决定优先级（Impact · Confidence · Ease）：先给 ICE 评分，优先选择 ICE 总分最高的先做。
+            </div>
+          </div>
+          <div class="sub-card">
+            <div class="sub-name">示例：一次完整的增长实验</div>
+            <div class="sub-text example-steps">
+              <div class="step-row"><span class="step-num">1</span><span><b>北极星指标</b>：年度活跃买家数增加 20%</span></div>
+              <div class="step-row"><span class="step-num">2</span><span><b>找瓶颈</b>：激活环节——首单率仅 35%</span></div>
+              <div class="step-row"><span class="step-num">3</span><span><b>提出假设</b>：如果首单金额降到 0.1 元，首单率能提升到 50%</span></div>
+              <div class="step-row"><span class="step-num">4</span><span><b>实验</b>：对照组 1 元 vs 实验组 0.1 元；指标：首单转化率、30 日复购率</span></div>
             </div>
           </div>
         </div>
