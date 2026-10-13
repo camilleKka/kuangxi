@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>用户增长知识框架总览</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+    background: #F2F3F5;
+    padding: 40px 24px;
+    color: #1F2329;
+  }
+  .page {
+    max-width: 1160px;
+    margin: 0 auto;
+  }
+  h1 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .subtitle {
+    font-size: 14px;
+    color: #646A73;
+    margin-bottom: 32px;
+  }
+  .branch {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 28px;
+  }
+  .branch-badge {
+    flex-shrink: 0;
+    width: 132px;
+    padding: 14px 0;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 600;
+    color: #0C5B32;
+    background: #E5FFF2;
+    border: 1.5px solid #0FDC78;
+    border-radius: 10px;
+    position: sticky;
+    top: 24px;
+  }
+  .branch-badge .en {
+    display: block;
+    font-size: 11px;
+    font-weight: 400;
+    color: #34A06B;
+    margin-top: 4px;
+  }
+  .modules {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .module {
+    background: #FFFFFF;
+    border: 1px solid #E4E6EB;
+    border-radius: 12px;
+    padding: 16px 20px;
+  }
+  .module-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 4px;
+  }
+  .module-name {
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .tag {
+    font-size: 12px;
+    color: #0C5B32;
+    background: #E5FFF2;
+    border: 1px solid #B4FDD9;
+    padding: 2px 10px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .tag.plain {
+    color: #646A73;
+    background: #F5F6F7;
+    border-color: #E4E6EB;
+  }
+  .module-desc {
+    font-size: 13px;
+    color: #646A73;
+    line-height: 1.7;
+  }
+  .sub-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 12px;
+  }
+  .sub-list.single {
+    grid-template-columns: 1fr;
+  }
+  .sub-card {
+    background: #F7F8FA;
+    border: 1px dashed #C9CDD4;
+    border-radius: 10px;
+    padding: 12px 16px;
+  }
+  .sub-name {
+    font-size: 13.5px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .sub-name .num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #0FDC78;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .sub-text {
+    font-size: 13px;
+    color: #4E535B;
+    line-height: 1.8;
+  }
+  .flow-inline {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    font-size: 13px;
+    color: #1F2329;
+    font-weight: 500;
+  }
+  .arrow {
+    color: #0FDC78;
+    font-weight: 600;
+  }
+  .divider-line {
+    border: none;
+    border-top: 2px dashed #D9DCE1;
+    margin: 36px 0;
+  }
+  .connector-note {
+    text-align: center;
+    font-size: 12px;
+    color: #8F959E;
+    margin-bottom: 20px;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <h1>用户增长知识框架总览</h1>
+  <p class="subtitle">1 套底层认知 + 2 个核心模型 + 1 套增长方法论 —— 所有增长策略从这里出发</p>
+
+  <!-- 分支一：底层认知 -->
+  <div class="branch">
+    <div class="branch-badge">① 底层认知<span class="en">Foundation</span></div>
+    <div class="modules">
+
+      <div class="module">
+        <div class="module-head">
+          <span class="module-name">北极星指标</span>
+          <span class="tag">唯一关键指标</span>
+        </div>
+        <p class="module-desc">一个阶段只追一个关键指标（如 DAU、年度活跃买家数），所有增长策略从这里出发。</p>
+      </div>
+
+      <div class="module">
+        <div class="module-head">
+          <span class="module-name">用户生命周期</span>
+          <span class="tag plain">定义 + 操作方式</span>
+        </div>
+        <div class="sub-list">
+          <div class="sub-card">
+            <div class="sub-name"><span class="num">1</span>用户生命阶段（定义）</div>
+            <div class="sub-text">
+              <span class="flow-inline">新手期 <span class="arrow">→</span> 成长期 <span class="arrow">→</span> 成熟期 <span class="arrow">→</span> 沉默期 <span class="arrow">→</span> 流失期</span><br>
+              底层逻辑：获客 → 激励 → 沉淀 → 转化
+            </div>
+          </div>
+          <div class="sub-card">
+            <div class="sub-name"><span class="num">2</span>操作方式：定阶段阈值与策略</div>
+            <div class="sub-text">
+              <span class="flow-inline">看数据 <span class="arrow">→</span> 找拐点 <span class="arrow">→</span> 定阈值 + 策略</span><br>
+              例：70% 用户首单后 30 天内复购 → 定「30 天未下单 = 沉默期」→ 定向发券
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 分支二：核心模型 -->
+  <div class="branch">
+    <div class="branch-badge">② 核心模型<span class="en">Models</span></div>
+    <div class="modules">
+
+      <div class="module">
+        <div class="module-head">
+          <span class="module-name">AARRR 漏斗</span>
+          <span class="tag">线性漏斗 · 用户视角</span>
+        </div>
+        <p class="module-desc">五个环节：获客 · 激活 · 留存 · 传播 · 收入。每个环节延伸出关键指标与策略集合，由北极星指标拆解制定，最终指向北极星指标。</p>
+      </div>
+
+      <div class="module">
+        <div class="module-head">
+          <span class="module-name">增长飞轮</span>
+          <span class="tag">正反馈循环 · 业务视角</span>
+        </div>
+        <div class="sub-list">
+          <div class="sub-card">
+            <div class="sub-name"><span class="num">1</span>业务飞轮</div>
+            <div class="sub-text">整个业务的核心底层逻辑。例：低价吸引用户 → 用户增多 → 商家竞争 → 广告收入 → 加大补贴 → 价格更低。</div>
+          </div>
+          <div class="sub-card">
+            <div class="sub-name"><span class="num">2</span>用户增长飞轮</div>
+            <div class="sub-text">以留存为核心的自增长循环：老用户带来新用户，每转一圈输出变成下一轮输入。</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 分支三：增长方法论 -->
+  <div class="branch">
+    <div class="branch-badge">③ 增长方法论<span class="en">Methodology</span></div>
+    <div class="modules">
+
+      <div class="module">
+        <div class="module-head">
+          <span class="module-name">数据分析</span>
+          <span class="tag plain">找瓶颈</span>
+        </div>
+        <p class="module-desc">漏斗分析找转化率最低的环节 · 留存曲线看第几天流失最严重 · Cohort 同期群分析看哪个渠道留存更好。</p>
+      </div>
+
+      <div class="module">
+        <div class="module-head">
+          <span class="module-name">增长实验</span>
+          <span class="tag plain">验证策略</span>
+        </div>
+        <div class="sub-list single">
+          <div class="sub-card">
+            <div class="sub-name">设计逻辑（四步）</div>
+            <div class="sub-text">
+              <span class="flow-inline">① 北极星指标 <span class="arrow">→</span> ② 找瓶颈 <span class="arrow">→</span> ③ 提出假设 <span class="arrow">→</span> ④ 实验与指标验证</span><br>
+              假设必须可证伪；一次只改一个变量；ICE 排序决定优先级（Impact · Confidence · Ease）。
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
