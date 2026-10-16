@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>思南活动复盘 · 用户增长仪表盘</title>
+<style>
+  :root{
+    --bg:#F7F4EF; --ink:#23201C; --muted:#6B6459; --card:#FFFFFF;
+    --rule:#E6E0D5; --line:#D9D2C4;
+    --good:#2E7D5B; --good-bg:rgba(46,125,91,.12); --good-line:rgba(46,125,91,.35);
+    --bad:#C0392B;  --bad-bg:rgba(192,57,43,.10);  --bad-line:rgba(192,57,43,.35);
+    --warn:#B07D2B; --warn-bg:rgba(176,125,43,.12);
+    --accent:#2E6E73;
+    --shadow:0 1px 2px rgba(35,32,28,.05),0 8px 24px rgba(35,32,28,.06);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;line-height:1.65;font-size:15px;}
+  .wrap{max-width:1040px;margin:0 auto;padding:40px 22px 80px;}
+
+  header{padding:6px 0 26px;border-bottom:1px solid var(--rule);margin-bottom:34px;}
+  header .eyebrow{font-size:12px;font-weight:700;letter-spacing:.16em;color:var(--muted);text-transform:uppercase;}
+  header h1{font-size:30px;font-weight:800;letter-spacing:-.01em;margin:6px 0 10px;}
+  header .sub{color:var(--muted);font-size:14px;}
+
+  .flowline{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin:14px 0 4px;}
+  .flowline .step{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:6px 12px;font-size:13px;font-weight:600;}
+  .flowline .arr{color:var(--muted);font-size:13px;}
+
+  section{margin-bottom:46px;}
+  .sec-idx{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.12em;color:var(--accent);margin-bottom:4px;}
+  h2{font-size:22px;font-weight:800;letter-spacing:-.01em;margin-bottom:6px;}
+  .sec-lead{color:var(--muted);font-size:14px;margin-bottom:18px;max-width:760px;}
+
+  .card{background:var(--card);border:1px solid var(--rule);border-radius:14px;box-shadow:var(--shadow);}
+  .card .pad{padding:20px 22px;}
+
+  .callout{border-left:4px solid var(--accent);background:rgba(46,110,115,.07);border-radius:0 10px 10px 0;padding:14px 18px;margin:14px 0;}
+  .callout.warn{border-color:var(--warn);background:var(--warn-bg);}
+  .callout.bad{border-color:var(--bad);background:var(--bad-bg);}
+  .callout h4{font-size:13px;font-weight:800;letter-spacing:.04em;color:var(--accent);margin-bottom:4px;}
+  .callout.warn h4{color:var(--warn);} .callout.bad h4{color:var(--bad);}
+  .callout p{font-size:14px;color:var(--ink);}
+
+  /* 北极星 */
+  .ns{display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap;}
+  .ns .big{flex:0 0 auto;background:linear-gradient(135deg,#2E6E73,#2E7D5B);color:#fff;border-radius:14px;padding:18px 22px;min-width:200px;}
+  .ns .big .lbl{font-size:12px;font-weight:700;letter-spacing:.1em;opacity:.85;}
+  .ns .big .val{font-size:26px;font-weight:800;margin-top:2px;}
+  .ns .txt{flex:1 1 320px;font-size:14.5px;}
+  .ns .txt b{color:var(--accent);}
+
+  /* 漏斗表 */
+  table{width:100%;border-collapse:collapse;}
+  thead th{background:var(--ink);color:#fff;font-size:12.5px;font-weight:700;letter-spacing:.03em;padding:10px 12px;text-align:left;}
+  tbody td{padding:12px;border-bottom:1px solid var(--rule);vertical-align:top;font-size:14px;}
+  tbody tr:last-child td{border-bottom:none;}
+  .stage-cell{font-weight:800;font-size:15px;white-space:nowrap;}
+  .stage-cell .sub{display:block;font-weight:400;font-size:12px;color:var(--muted);margin-top:2px;}
+  .metric{font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:700;}
+  .bar{height:7px;border-radius:99px;background:#EDE8DE;margin-top:6px;overflow:hidden;min-width:110px;}
+  .bar>i{display:block;height:100%;border-radius:99px;}
+
+  tr.hl-good{background:var(--good-bg);}
+  tr.hl-good .stage-cell{color:var(--good);}
+  tr.hl-good .bar>i{background:var(--good);}
+  tr.hl-bad{background:var(--bad-bg);}
+  tr.hl-bad .stage-cell{color:var(--bad);}
+  tr.hl-bad .bar>i{background:var(--bad);}
+  tr.hl-mid{background:#FBF7EF;}
+  tr.hl-mid .bar>i{background:var(--warn);}
+
+  .badge{display:inline-block;font-size:12px;font-weight:700;line-height:1;padding:5px 10px;border-radius:6px;white-space:nowrap;}
+  .b-good{background:var(--good-bg);color:var(--good);border:1px solid var(--good-line);}
+  .b-bad{background:var(--bad-bg);color:var(--bad);border:1px solid var(--bad-line);}
+  .b-warn{background:var(--warn-bg);color:var(--warn);}
+  .b-none{background:#EFEAE0;color:var(--muted);}
+
+  .reason{font-size:12.5px;color:var(--muted);margin-top:6px;line-height:1.55;}
+  .reason.good{color:var(--good);} .reason.bad{color:var(--bad);}
+
+  .legend{display:flex;gap:18px;flex-wrap:wrap;margin:12px 0 20px;font-size:13px;color:var(--muted);}
+  .legend span{display:inline-flex;align-items:center;gap:7px;}
+  .dot{width:11px;height:11px;border-radius:3px;display:inline-block;}
+  .dot.g{background:var(--good);} .dot.b{background:var(--bad);} .dot.w{background:var(--warn);}
+
+  /* 亮点/优化 */
+  .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;}
+  .mini{background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:16px 18px;}
+  .mini .tag{font-size:11.5px;font-weight:800;letter-spacing:.08em;margin-bottom:8px;display:inline-block;padding:3px 9px;border-radius:6px;}
+  .tag.keep{background:var(--good-bg);color:var(--good);}
+  .tag.opt{background:var(--warn-bg);color:var(--warn);}
+  .tag.dev{background:rgba(46,110,115,.12);color:var(--accent);}
+  .mini h3{font-size:15px;font-weight:700;margin-bottom:6px;}
+  .mini p{font-size:13.5px;color:var(--muted);}
+  .mini ul{margin:6px 0 0 18px;font-size:13.5px;color:var(--ink);}
+  .mini ul li{margin-bottom:4px;}
+
+  .decision{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin:16px 0;}
+  .decision .d{background:var(--card);border:1.5px solid var(--accent);color:var(--accent);border-radius:99px;padding:6px 14px;font-size:13px;font-weight:700;}
+  .decision .arr{color:var(--muted);}
+
+  footer{border-top:1px solid var(--rule);margin-top:40px;padding-top:18px;color:var(--muted);font-size:12.5px;}
+  @media(max-width:640px){header h1{font-size:24px;}h2{font-size:19px;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ============ HEADER ============ -->
+  <header>
+    <div class="eyebrow">思南活动复盘 · 用户增长仪表盘</div>
+    <h1>免费演出吸粉 → 社媒建立信任 → 专场购票转化</h1>
+    <div class="sub">复盘日期 2026-10-16 · 活动周期 9.14–10.1 · 负责人 小卡 · 框架：获客 → 激活 → 留存 → 转化</div>
+  </header>
+
+  <!-- ============ 一、核心思路 ============ -->
+  <section>
+    <div class="sec-idx">01</div>
+    <h2>核心思路</h2>
+    <p class="sec-lead">本次活动的用户增长主线——用免费演出做获客入口，用社媒做信任沉淀，最终在专场演出完成转化。</p>
+    <div class="flowline">
+      <span class="step">免费演出吸粉</span><span class="arr">→</span>
+      <span class="step">社媒认知建立</span><span class="arr">→</span>
+      <span class="step">私下浏览内容 · 建立信任</span><span class="arr">→</span>
+      <span class="step">专场演出购票转化</span>
+    </div>
+  </section>
+
+  <!-- ============ 二、北极星指标 ============ -->
+  <section>
+    <div class="sec-idx">02</div>
+    <h2>北极星指标</h2>
+    <div class="card"><div class="pad">
+      <div class="ns">
+        <div class="big">
+          <div class="lbl">北极星指标</div>
+          <div class="val">社媒关注（涨粉）</div>
+        </div>
+        <div class="txt">
+          涨粉是购票的<b>前置条件</b>：通过社媒渠道与观众建立<b>长期链接与陪伴</b>，沉淀"长板用户"，为后续专场演出售票积累信任基础。用户的决策路径是 <b>认知 → 链接 → 信任 → 转化</b>，链接是转化的前置变量。
+        </div>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- ============ 三、增长漏斗仪表盘 ============ -->
+  <section>
+    <div class="sec-idx">03</div>
+    <h2>增长漏斗数据仪表盘</h2>
+    <p class="sec-lead">按 获客 → 激活 → 留存 → 转化 输出。绿色 = 达成较好（奖励机制驱动），红色 = 链路断裂（增长路径未跑通）。</p>
+
+    <div class="legend">
+      <span><i class="dot g"></i>获客 / 激活：完成率较高</span>
+      <span><i class="dot b"></i>留存 / 转化：链路断裂</span>
+      <span><i class="dot w"></i>部分达成</span>
+    </div>
+
+    <div class="card"><div style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:120px;">阶段</th>
+            <th>策略 / 动作</th>
+            <th style="width:120px;">关键指标</th>
+            <th style="width:90px;">目标值</th>
+            <th style="width:90px;">实际值</th>
+            <th style="width:150px;">完成率</th>
+            <th style="width:96px;">判定</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <!-- 获客 -->
+          <tr class="hl-good">
+            <td class="stage-cell">获客<span class="sub">Acquisition</span></td>
+            <td>引导关注小红书等社媒平台，配合奖励机制降低关注门槛
+              <div class="reason good">✓ 奖励机制为前提，用户关注意愿被有效触发</div>
+            </td>
+            <td>新增粉丝数 / 社媒自然流量</td>
+            <td class="metric">50</td>
+            <td class="metric">35</td>
+            <td><div class="metric">70%</div><div class="bar"><i style="width:70%"></i></div></td>
+            <td><span class="badge b-good">较好</span></td>
+          </tr>
+
+          <!-- 激活 -->
+          <tr class="hl-good">
+            <td class="stage-cell">激活<span class="sub">Activation</span></td>
+            <td>发小红书 UGC 笔记获得抽奖资格（中奖率约90%）→ 啊哈时刻；完成网页小游戏互动；专场主题互动板建立情感链接
+              <div class="reason good">✓ 用户发布意愿高 + 奖励机制 → UGC 产出 21/30</div>
+            </td>
+            <td>新增粉丝 / UGC 产出 / 私域裂变 / 主题认知</td>
+            <td class="metric">30</td>
+            <td class="metric">21</td>
+            <td><div class="metric">70%</div><div class="bar"><i style="width:70%"></i></div></td>
+            <td><span class="badge b-good">较好</span></td>
+          </tr>
+
+          <!-- 留存 -->
+          <tr class="hl-bad">
+            <td class="stage-cell">留存<span class="sub">Retention</span></td>
+            <td>引导预约观摩日常排练，建立"陌生人 → 参与者 → 支持者"的链接
+              <div class="reason bad">✗ 仅 1 人预约。前期构思未想清楚用户增长路径，关注之后没有承接动作，链路在此断裂</div>
+            </td>
+            <td>观摩到场率 / 复访率</td>
+            <td class="metric">—</td>
+            <td class="metric">1 预约</td>
+            <td><div class="metric">未达标</div><div class="bar"><i style="width:6%"></i></div></td>
+            <td><span class="badge b-bad">断裂</span></td>
+          </tr>
+
+          <!-- 转化 -->
+          <tr class="hl-bad">
+            <td class="stage-cell">转化<span class="sub">Revenue</span></td>
+            <td>满 220 元送限定周边，推动购票（尤其高价票）
+              <div class="reason bad">✗ 现场售票 0/40。转化动作被前置到首次触达现场，信任尚未建立，无法完成购票决策</div>
+            </td>
+            <td>购票数 / 高价票占比</td>
+            <td class="metric">40</td>
+            <td class="metric">0</td>
+            <td><div class="metric">0%</div><div class="bar"><i style="width:1%"></i></div></td>
+            <td><span class="badge b-bad">断裂</span></td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div></div>
+
+    <div class="callout bad">
+      <h4>核心诊断：链路在"留存"断裂</h4>
+      <p>获客与激活达成 70%（奖励机制 + 高发布意愿驱动有效）；但<b>留存仅 1 人预约、转化 0 售票</b>。根本原因是前期未想清楚增长路径——用户关注之后，缺少把"关注者"沉淀为"参与者"的承接动作，导致活动后漏斗（社媒持续触达 → 信任建立 → 专场转化）没有运转起来。</p>
+    </div>
+  </section>
+
+  <!-- ============ 四、社媒发布 × 北极星 ============ -->
+  <section>
+    <div class="sec-idx">04</div>
+    <h2>社媒发布方向 × 北极星指标</h2>
+    <p class="sec-lead">社媒是涨粉与信任沉淀的主渠道，发布方向必须紧扣北极星指标。</p>
+    <div class="card"><div class="pad">
+      <div class="decision">
+        <span class="d">认知</span><span class="arr">→</span>
+        <span class="d">链接</span><span class="arr">→</span>
+        <span class="d">信任</span><span class="arr">→</span>
+        <span class="d">转化</span>
+      </div>
+      <p style="font-size:14.5px;">
+        <b>链接是转化的前置条件，也是可发力的变量。</b>结合合唱团供给侧（时间 / 成本 / 人力），<b style="color:var(--accent)">"陪伴成长"是最好的杠杆</b>——在已有资源上持续发力：<b>社媒运营 + 观摩排练</b>，把"链接"的动作夯实，让用户从 <b>关注者 → 参与者 → 支持者</b> 逐步转化。
+      </p>
+      <div class="callout" style="margin:14px 0 0;">
+        <h4>有益数据信号</h4>
+        <p>小红书置顶互动 35 条（目标 50，70%）、话题 repo 21 篇（目标 30，70%）、福利抽奖 57 球（57%）——证明社媒内容 + 奖励机制组合对"建立链接"有效，是后续可放大投入的方向。</p>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- ============ 五、亮点与优化建议 ============ -->
+  <section>
+    <div class="sec-idx">05</div>
+    <h2>亮点与优化建议</h2>
+    <div class="card"><div class="pad">
+      <table>
+        <thead>
+          <tr><th style="width:100px;">板块</th><th>亮点</th><th>可优化</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="stage-cell" style="font-size:14px;">演出</td>
+            <td>时长把控好；介绍词有感染力</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td class="stage-cell" style="font-size:14px;">执行</td>
+            <td>—</td>
+            <td>互动区人手冗余、引流路径不清晰</td>
+          </tr>
+          <tr>
+            <td class="stage-cell" style="font-size:14px;">宣传</td>
+            <td>照片直播（实时性强）</td>
+            <td>事后社媒账号与粉丝的互动承接不足</td>
+          </tr>
+        </tbody>
+      </table>
+    </div></div>
+  </section>
+
+  <!-- ============ 六、总结 ============ -->
+  <section>
+    <div class="sec-idx">06</div>
+    <h2>总结</h2>
+    <div class="grid2">
+      <div class="mini">
+        <span class="tag keep">可保留</span>
+        <ul>
+          <li>社媒互动玩法（置顶互动 + 话题 repo）</li>
+          <li>社媒 repo 内容方向</li>
+          <li>通过奖励机制触发用户意愿</li>
+        </ul>
+      </div>
+      <div class="mini">
+        <span class="tag opt">可优化</span>
+        <ul>
+          <li>活动现场人手调配（互动区冗余）</li>
+          <li>事后社媒账号与粉丝的持续互动承接</li>
+          <li>关注之后的留存承接动作（观摩排练需强化引导）</li>
+        </ul>
+      </div>
+      <div class="mini" style="grid-column:1/-1;">
+        <span class="tag dev">发展思路</span>
+        <p style="margin-top:4px;">按用户决策路径 <b>认知 → 链接 → 信任 → 转化</b>：链接是转化的前置条件，是核心变量。结合合唱团供给侧的时间 / 成本 / 人力，<b style="color:var(--accent)">"陪伴成长"是最优杠杆</b>——在已有资源上持续发力：<b>社媒运营 + 观摩排练</b>，把链接动作夯实，让用户从<b>关注者 → 参与者 → 支持者</b>层层递进，最终在专场演出完成转化。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer>
+    数据来源：思南活动复盘（飞书文档）· 延伸互动数据看板 · 10/1 复盘会讨论<br>
+    框架：获客 → 激活 → 留存 → 转化 · 北极星指标：社媒关注（涨粉）
+  </footer>
+
+</div>
+</body>
+</html>
