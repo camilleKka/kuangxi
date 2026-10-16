@@ -69,12 +69,16 @@
   tr.hl-bad .bar>i{background:var(--bad);}
   tr.hl-mid{background:#FBF7EF;}
   tr.hl-mid .bar>i{background:var(--warn);}
+  tr.hl-neutral{background:#FFFFFF;}
+  tr.hl-neutral .stage-cell{color:var(--muted);}
+  tr.hl-neutral .bar>i{background:var(--line);}
 
   .badge{display:inline-block;font-size:12px;font-weight:700;line-height:1;padding:5px 10px;border-radius:6px;white-space:nowrap;}
   .b-good{background:var(--good-bg);color:var(--good);border:1px solid var(--good-line);}
   .b-bad{background:var(--bad-bg);color:var(--bad);border:1px solid var(--bad-line);}
   .b-warn{background:var(--warn-bg);color:var(--warn);}
   .b-none{background:#EFEAE0;color:var(--muted);}
+  .b-neutral{background:#F1EDE5;color:var(--muted);border:1px solid var(--line);}
 
   .reason{font-size:12.5px;color:var(--muted);margin-top:6px;line-height:1.55;}
   .reason.good{color:var(--good);} .reason.bad{color:var(--bad);}
@@ -118,6 +122,9 @@
   <section>
     <div class="sec-idx">01</div>
     <h2>核心思路</h2>
+    <div class="callout" style="margin:0 0 14px;">
+      <p>用户的决策路径是 <b>认知 → 链接 → 信任 → 转化</b>，<b>链接</b>是信任和转化的前置变量。</p>
+    </div>
     <p class="sec-lead">本次活动的用户增长主线——用免费演出做获客入口，用社媒做信任沉淀，最终在专场演出完成转化。</p>
     <div class="flowline">
       <span class="step">免费演出吸粉</span><span class="arr">→</span>
@@ -138,7 +145,7 @@
           <div class="val">社媒关注（涨粉）</div>
         </div>
         <div class="txt">
-          涨粉是购票的<b>前置条件</b>：通过社媒渠道与观众建立<b>长期链接与陪伴</b>，沉淀"长板用户"，为后续专场演出售票积累信任基础。用户的决策路径是 <b>认知 → 链接 → 信任 → 转化</b>，链接是转化的前置变量。
+          涨粉是购票的<b>前置条件</b>：通过社媒渠道建立观众的<b>认知</b>，长期<b>陪伴成长</b>，沉淀"长板用户"，为后续专场演出售票积累信任基础。
         </div>
       </div>
     </div></div>
@@ -148,12 +155,12 @@
   <section>
     <div class="sec-idx">03</div>
     <h2>增长漏斗数据仪表盘</h2>
-    <p class="sec-lead">按 获客 → 激活 → 留存 → 转化 输出。绿色 = 达成较好（奖励机制驱动），红色 = 链路断裂（增长路径未跑通）。</p>
+    <p class="sec-lead">按 获客 → 激活 → 留存 → 转化 输出。绿色 = 达成较好（奖励机制驱动），红色 = 链路断裂（增长路径未跑通），白色 = 试探性动作（未设达成预期）。</p>
 
     <div class="legend">
       <span><i class="dot g"></i>获客 / 激活：完成率较高</span>
-      <span><i class="dot b"></i>留存 / 转化：链路断裂</span>
-      <span><i class="dot w"></i>部分达成</span>
+      <span><i class="dot b"></i>留存：链路断裂</span>
+      <span><i class="dot n" style="background:#C9C2B6;"></i>转化：试探性动作</span>
     </div>
 
     <div class="card"><div style="overflow-x:auto;">
@@ -211,16 +218,16 @@
           </tr>
 
           <!-- 转化 -->
-          <tr class="hl-bad">
+          <tr class="hl-neutral">
             <td class="stage-cell">转化<span class="sub">Revenue</span></td>
             <td>满 220 元送限定周边，推动购票（尤其高价票）
-              <div class="reason bad">✗ 现场售票 0/40。转化动作被前置到首次触达现场，信任尚未建立，无法完成购票决策</div>
+              <div class="reason">现场售票 0/40。本次转化为<b>试探性动作</b>——首次触达现场信任尚未建立，未对其设定达成预期，仅作为必要存在的承接环节</div>
             </td>
             <td>购票数 / 高价票占比</td>
             <td class="metric">40</td>
             <td class="metric">0</td>
             <td><div class="metric">0%</div><div class="bar"><i style="width:1%"></i></div></td>
-            <td><span class="badge b-bad">断裂</span></td>
+            <td><span class="badge b-neutral">试探</span></td>
           </tr>
 
         </tbody>
@@ -229,7 +236,7 @@
 
     <div class="callout bad">
       <h4>核心诊断：链路在"留存"断裂</h4>
-      <p>获客与激活达成 70%（奖励机制 + 高发布意愿驱动有效）；但<b>留存仅 1 人预约、转化 0 售票</b>。根本原因是前期未想清楚增长路径——用户关注之后，缺少把"关注者"沉淀为"参与者"的承接动作，导致活动后漏斗（社媒持续触达 → 信任建立 → 专场转化）没有运转起来。</p>
+      <p>获客与激活达成 70%（奖励机制 + 高发布意愿驱动有效）；<b>留存仅 1 人预约</b>，是本次链路真正的断裂点。根本原因是前期未想清楚增长路径——用户关注之后，缺少把"关注者"沉淀为"参与者"的承接动作，导致活动后漏斗（社媒持续触达 → 信任建立 → 专场转化）没有运转起来。转化为<b>试探性动作</b>，首次触达现场信任未建立，未设达成预期，属正常。</p>
     </div>
   </section>
 
@@ -294,7 +301,6 @@
         <span class="tag keep">可保留</span>
         <ul>
           <li>社媒互动玩法（置顶互动 + 话题 repo）</li>
-          <li>社媒 repo 内容方向</li>
           <li>通过奖励机制触发用户意愿</li>
         </ul>
       </div>
