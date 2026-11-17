@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>用户增长知识框架 · 一键复制</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    font-family:"PingFang SC","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;
+    background:#F2F3F5;color:#1F2329;padding:32px 20px 48px;
+  }
+  .page{max-width:900px;margin:0 auto;}
+  h1{font-size:20px;font-weight:600;margin-bottom:6px;}
+  .sub{font-size:13px;color:#646A73;margin-bottom:20px;}
+  .bar{
+    display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+    background:#fff;border:1px solid #E4E6EB;border-radius:12px;
+    padding:14px 16px;margin-bottom:14px;
+  }
+  button{
+    font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;
+    border:none;border-radius:8px;padding:10px 20px;
+    background:#0FDC78;color:#06301B;transition:.15s;
+  }
+  button:hover{filter:brightness(.95);}
+  button:active{transform:translateY(1px);}
+  #hint{font-size:13px;color:#34A06B;font-weight:600;}
+  textarea{
+    width:100%;height:70vh;min-height:520px;resize:vertical;
+    font-family:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace;
+    font-size:13px;line-height:1.75;color:#1F2329;
+    background:#fff;border:1px solid #E4E6EB;border-radius:12px;
+    padding:18px 20px;outline:none;
+  }
+  textarea:focus{border-color:#0FDC78;}
+  .tip{font-size:12px;color:#8F959E;margin-top:10px;line-height:1.7;}
+  @media(max-width:600px){body{padding:20px 12px;}textarea{height:60vh;}}
+</style>
+</head>
+<body>
+<div class="page">
+  <h1>用户增长知识框架 · 一键复制</h1>
+  <div class="sub">点按钮复制全部 Markdown，然后到 Manus 对话框直接粘贴（Ctrl/Cmd + V）。</div>
+
+  <div class="bar">
+    <button id="copyBtn">一键复制全部内容</button>
+    <button id="selectBtn" style="background:#F5F6F7;color:#1F2329;border:1px solid #E4E6EB;">全选文本</button>
+    <span id="hint"></span>
+  </div>
+
+  <textarea id="content" readonly spellcheck="false"># 用户增长知识框架总览
+
+> 用途：用户增长岗位知识体系框架。结构为「底层认知 → 核心模型 → 增长方法论」三层，用于系统学习与实战复盘。
+
+---
+
+## ① 底层认知（Foundation）
+
+### 1. 北极星指标（唯一关键指标）
+
+一个阶段只追一个关键指标（如 DAU、年度活跃买家数），所有增长策略从这里出发。
+
+### 2. 用户生命周期（定义 + 操作方式）
+
+#### 2.1 用户生命阶段（定义）
+
+新手期 → 成长期 → 成熟期 → 沉默期 → 流失期
+
+底层逻辑：获客 → 激励 → 沉淀 → 转化
+
+#### 2.2 操作方式：定阶段阈值与策略
+
+看数据 → 找拐点 → 定阈值 + 策略
+
+示例：70% 用户首单后 30 天内复购 → 定「30 天未下单 = 沉默期」→ 定向发券
+
+---
+
+## ② 核心模型（Models）
+
+### 1. AARRR 漏斗（线性漏斗 · 用户视角）
+
+五个环节：获客 · 激活 · 留存 · 传播 · 收入。
+
+每个环节延伸出关键指标与策略集合，由北极星指标拆解制定，最终指向北极星指标。
+
+示例：拼多多 AARRR 拆解
+
+| 环节 | 拼多多策略 | 关键指标 |
+|---|---|---|
+| 获客 | 砍一刀 · 拼团 | 新注册数 · CAC |
+| 激活 | 一分钱秒杀 · 新人一元购 | 注册→首单率 |
+| 留存 | 多多果园 · 签到红包 · 百亿补贴 | 7 天留存 · 30 天留存 · 打开频次 |
+
+### 2. 增长飞轮（正反馈循环 · 业务视角）
+
+**业务飞轮**：整个业务的核心底层逻辑。
+
+示例：低价吸引用户 → 用户增多 → 商家竞争 → 广告收入 → 加大补贴 → 价格更低。
+
+---
+
+## ③ 增长方法论（Methodology）
+
+### 1. 数据分析（找瓶颈）
+
+- 漏斗分析：找转化率最低的环节
+- 留存曲线：看第几天流失最严重
+- Cohort 同期群分析：看哪个渠道留存更好
+
+### 2. 增长实验（验证策略）
+
+#### 2.1 设计逻辑（四步）
+
+① 北极星指标 → ② 找瓶颈 → ③ 提出假设 → ④ 实验与指标验证
+
+约束与排序：
+- 假设必须可证伪
+- 一次只改一个变量
+- ICE 排序决定优先级（Impact · Confidence · Ease）：先给 ICE 评分，优先选择 ICE 总分最高的先做
+
+#### 2.2 示例：一次完整的增长实验
+
+1. **北极星指标**：年度活跃买家数增加 20%
+2. **找瓶颈**：激活环节——首单率仅 35%
+3. **提出假设**：如果首单金额降到 0.1 元，首单率能提升到 50%
+4. **实验**：对照组 1 元 vs 实验组 0.1 元；指标：首单转化率、30 日复购率
+
+---
+
+## 层级关系速记
+
+| 层级 | 模块 | 解决的问题 |
+|---|---|---|
+| 底层认知 | 北极星指标 | 追什么 |
+| 底层认知 | 用户生命周期 | 用户在哪个阶段、怎么判定 |
+| 核心模型 | AARRR 漏斗 | 增长从哪来、按什么拆 |
+| 核心模型 | 增长飞轮 | 业务为何能持续自转 |
+| 增长方法论 | 数据分析 | 瓶颈在哪 |
+| 增长方法论 | 增长实验 | 怎么验证并落地 |</textarea>
+
+  <div class="tip">若「一键复制」无效（浏览器限制剪贴板权限），点「全选文本」后按 Ctrl/Cmd + C，再到 Manus 粘贴即可。</div>
+</div>
+
+<script>
+  var ta = document.getElementById('content');
+  var hint = document.getElementById('hint');
+
+  function flash(msg, color){
+    hint.textContent = msg;
+    hint.style.color = color || '#34A06B';
+    setTimeout(function(){ hint.textContent = ''; }, 2600);
+  }
+
+  document.getElementById('copyBtn').addEventListener('click', function(){
+    var text = ta.value;
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(function(){
+        flash('✓ 已复制，去 Manus 粘贴即可');
+      }).catch(function(){
+        fallback();
+      });
+    } else {
+      fallback();
+    }
+    function fallback(){
+      ta.removeAttribute('readonly');
+      ta.focus();
+      ta.select();
+      ta.setSelectionRange(0, text.length);
+      var ok = false;
+      try { ok = document.execCommand('copy'); } catch(e){}
+      ta.setAttribute('readonly','');
+      window.getSelection().removeAllRanges();
+      if (ok) flash('✓ 已复制，去 Manus 粘贴即可');
+      else flash('请手动按 Ctrl/Cmd + C 复制', '#D97706');
+    }
+  });
+
+  document.getElementById('selectBtn').addEventListener('click', function(){
+    ta.focus();
+    ta.select();
+    ta.setSelectionRange(0, ta.value.length);
+    flash('已全选，按 Ctrl/Cmd + C 复制', '#646A73');
+  });
+</script>
+</body>
+</html>
